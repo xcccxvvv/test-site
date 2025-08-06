@@ -53,23 +53,18 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/xcccxvvv/test-site/tree/main",
         },
         blog: {
           showReadingTime: true,
-          feedOptions: {
-            type: ["rss", "atom"],
-            xslt: true,
-          },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/xcccxvvv/test-site/tree/main",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
+          editLocalizedFiles: true,
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -79,13 +74,14 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
+    // Replace with your project's social car
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "IGEN Docs",
+      title: "IGEN Tech Docs",
       logo: {
-        alt: "ITA",
-        src: "img/lanpang.svg",
+        alt: "IGEN Tech Docs",
+        src: "img/light.svg",
+        srcDark: "img/dark.svg",
       },
       items: [
         {
@@ -96,61 +92,68 @@ const config: Config = {
         },
         { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
-          label: "GitHub",
+          type: "localeDropdown",
           position: "right",
         },
       ],
     },
     footer: {
-      style: "dark",
+      logo: {
+        href: "/",
+        src: "img/footer_light.svg",
+        srcDark: "img/footer_dark.svg",
+        alt: "IGEN Documentation | IGEN Docs",
+        height: "36px",
+      },
       links: [
         {
-          title: "Docs",
+          title: "Product",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
+              label: "Solarman",
+              href: "https://www.solarmanpv.com/",
             },
           ],
         },
         {
-          title: "Community",
+          title: "Company",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "X",
-              href: "https://x.com/docusaurus",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
-            {
-              label: "Blog",
-              to: "/blog",
-            },
-            {
-              label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              label: "About Us",
+              href: "https://www.igen-tech.com/",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright:
+        "Copyright © IGEN Tech Co,Ltd since 2025. All rights reserved.",
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: {
+        plain: prismThemes.vsDark.plain,
+        styles: [
+          ...prismThemes.vsDark.styles,
+          {
+            types: ["function", "keyword"],
+            style: {
+              color: "#f25c7c",
+            },
+          },
+        ],
+      },
     },
+    additionalLanguages: [
+      "dart",
+      "ruby",
+      "groovy",
+      "kotlin",
+      "java",
+      "swift",
+      "objectivec",
+      "json",
+      "bash",
+    ],
   } satisfies Preset.ThemeConfig,
 };
 
