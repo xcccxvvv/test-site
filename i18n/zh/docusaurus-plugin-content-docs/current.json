@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Hardware": {
+    "message": "硬件",
+    "description": "The label for category Hardware in sidebar tutorialSidebar"
+  }
+}

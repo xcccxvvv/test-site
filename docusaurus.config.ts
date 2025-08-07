@@ -28,6 +28,7 @@ const config: Config = {
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
+  plugins: ["./plugins/tailwind-plugin.cjs"],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -77,9 +78,9 @@ const config: Config = {
     // Replace with your project's social car
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "IGEN Tech Docs",
+      title: "Docs",
       logo: {
-        alt: "IGEN Tech Docs",
+        alt: "Docs",
         src: "img/light.svg",
         srcDark: "img/dark.svg",
       },
@@ -88,7 +89,7 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "Tutorial",
+          label: "Documentation",
         },
         { to: "/blog", label: "Blog", position: "left" },
         {
