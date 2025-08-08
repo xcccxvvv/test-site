@@ -20,7 +20,7 @@
     "description": "The footer copyright"
   },
   "logo.alt": {
-    "message": "IGEN Documentation | IGEN Docs",
+    "message": "IGEN Developers",
     "description": "The alt text of footer logo"
   }
 }

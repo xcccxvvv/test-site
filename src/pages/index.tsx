@@ -3,35 +3,27 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
-import Heading from "@theme/Heading";
+import Translate, { translate } from "@docusaurus/Translate";
+import Head from "@docusaurus/Head";
 
 import styles from "./index.module.css";
-
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-      </div>
-    </header>
-  );
-}
+import LetterGlitch from "../blocks/Backgrounds/LetterGlitch/LetterGlitch";
 
 export default function Home(): ReactNode {
-  const { siteConfig } = useDocusaurusContext();
+  const { siteConfig, i18n } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={`${siteConfig.title}`}
+      description={translate({
+        message: "Welcome to our website!",
+        id: "home.description",
+      })}
     >
-      <HomepageHeader />
+      <Head>
+        <title>{siteConfig.title}</title>
+      </Head>
       <main>
-        <HomepageFeatures />
+        
       </main>
     </Layout>
   );

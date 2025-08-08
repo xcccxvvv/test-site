@@ -1,10 +1,10 @@
 {
   "title": {
-    "message": "知识库",
+    "message": "开发者",
     "description": "The title in the navbar"
   },
   "logo.alt": {
-    "message": "知识库",
+    "message": "开发者",
     "description": "The alt text of navbar logo"
   },
   "item.label.Documentation": {
