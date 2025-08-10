@@ -8,6 +8,7 @@ import Head from "@docusaurus/Head";
 
 import styles from "./index.module.css";
 import LetterGlitch from "../blocks/Backgrounds/LetterGlitch/LetterGlitch";
+import Threads from "../components/Threads";
 
 export default function Home(): ReactNode {
   const { siteConfig, i18n } = useDocusaurusContext();
@@ -22,9 +23,7 @@ export default function Home(): ReactNode {
       <Head>
         <title>{siteConfig.title}</title>
       </Head>
-      <main>
-        
-      </main>
+      <main></main>
     </Layout>
   );
 }
