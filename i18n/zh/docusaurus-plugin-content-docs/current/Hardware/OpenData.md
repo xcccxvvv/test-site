@@ -11,16 +11,16 @@ OpenData是为基于WiFi的Solarman物联网设备（如插座、电表、读表
 
 ### 核心功能
 
-- 设备数据获取：实时拉取设备基础信息（型号、固件版本等）、测量数据。
-- 设备配置更新：动态调整设备参数及配置。
+- **设备数据获取**：实时拉取设备基础信息（型号、固件版本等）、测量数据。
+- **设备配置更新**：动态调整设备参数及配置。
 
 ### 使用场景
 
-1. 推送设备数据（UDP）
+1. **推送设备数据（UDP）**
     - 不加密：UDP广播至 255.255.255.255
     - 设备Key加密：UDP广播至 255.255.255.255（暂不支持，敬请期待）
 
-2. 接收外部查询请求（HTTP/HTTPS）
+2. **接收外部查询请求（HTTP/HTTPS）**
     - HTTP：无加密认证，明文传输
     - HTTP + Digest：Digest认证
     - HTTPS：TLS/SSL加密（暂不支持，敬请期待）
@@ -89,11 +89,11 @@ UDP默认状态为关闭，需要手动开启UDP。
 
 对于支持UDP广播服务的设备，您可通过接收UDP报文来获取设备信息。
 
-| 设备 | 广播地址及端口 |发送频率（ms）|
-| ----------- | ----------- |----------- |
-| P1读表器 | 广播地址：255.255.255.255；端口：8088 | 500 |
-| 智能计量插座 | 广播地址：255.255.255.255；端口：8088  | 500 |
-| 智能导轨电表 | 广播地址：255.255.255.255；端口：8088  | 200 |
+| 设备         | 广播地址及端口                        | 发送频率（ms） |
+| ------------ | ------------------------------------- | -------------- |
+| P1读表器     | 广播地址：255.255.255.255；端口：8088 | 500            |
+| 智能计量插座 | 广播地址：255.255.255.255；端口：8088 | 500            |
+| 智能导轨电表 | 广播地址：255.255.255.255；端口：8088 | 200            |
 
 
 **操作步骤**：
@@ -178,17 +178,17 @@ Digest认证技术用于网络通信中验证用户身份，避免密码明文�
 
 4. 认证信息见下表：
 
-   | 字段 | 值 |
-   | ----------- | ----------- |
-   | Username | 默认opend |
-   | Password | 默认设备KEY |
-   | Realm | AES128-GCM生成的tag值，Base64格式 |
-   | Nonce | 随机值，与AES加密随机值保持一致 |
-   | Algorithm	| MD5 |
-   | qop | auth |
-   | Nonce Count | 随机值 |
-   | Client Nonce	| 随机值 |
-   | Opaque | 不填 |
+   | 字段         | 值                                |
+   | ------------ | --------------------------------- |
+   | Username     | 默认opend                         |
+   | Password     | 默认设备KEY                       |
+   | Realm        | AES128-GCM生成的tag值，Base64格式 |
+   | Nonce        | 随机值，与AES加密随机值保持一致   |
+   | Algorithm    | MD5                               |
+   | qop          | auth                              |
+   | Nonce Count  | 随机值                            |
+   | Client Nonce | 随机值                            |
+   | Opaque       | 不填                              |
 
 5. 在HTTP方法下拉框选择**POST**请求。
 <img src={require("./img/select_post.png").default} width="150"/>
@@ -218,46 +218,46 @@ Digest认证技术用于网络通信中验证用户身份，避免密码明文�
 <img src={require("./img/select_digest.png").default} width="300"/>
 3. 认证信息见下表：
 
-   | 字段 | 值 |
-   | ----------- | ----------- |
-   | Username | 默认opend |
-   | Password | 修改后的设备密码 |
-   | Realm | 随机值 |
-   | Nonce | 用于加密当前密码的AES加密随机值 |
-   | Algorithm	| MD5 |
-   | qop | auth |
-   | Nonce Count | 随机值 |
-   | Client Nonce	| 随机值 |
-   | Opaque | 不填 |
+   | 字段         | 值                              |
+   | ------------ | ------------------------------- |
+   | Username     | 默认opend                       |
+   | Password     | 修改后的设备密码                |
+   | Realm        | 随机值                          |
+   | Nonce        | 用于加密当前密码的AES加密随机值 |
+   | Algorithm    | MD5                             |
+   | qop          | auth                            |
+   | Nonce Count  | 随机值                          |
+   | Client Nonce | 随机值                          |
+   | Opaque       | 不填                            |
 
 ### HTTPS
 暂不支持，敬请期待
 
 ### 错误码
 
-| 错误码 | 描述 | 说明 |
-| - | - | - |
-| 400 | Bad Request（错误请求） | 服务器无法理解请求的格式，客户端应当修改请求后再尝试。|
-| 401 | Unauthorized（未授权） | 请求要求身份验证，客户端需要提供有效的凭据。|
-| 403 | Forbidden（禁止） | 服务器理解请求，但拒绝执行，通常是由于权限问题。|
-| 404 | Not Found（未找到） | 服务器无法找到请求的资源，可能是因为资源不存在或已被删除。|
-| 405 | Method Not Allowed（方法不允许） | 请求的方法与资源不兼容，例如对只读资源执行写操作。|
-| 408 | Request Timeout（请求超时） | 服务器在等待请求时超时，客户端可以稍后重试。|
-| 409 | Conflict（冲突） | 请求与资源的当前状态存在冲突，例如多用户同时编辑同一资源。|
-| 410 | Gone（已删除） | 请求的资源已被永久删除，且没有新的地址。|
-| 500 | Internal Server Error（内部服务器错误） | 服务器遇到未知错误，无法完成请求。|
-| 501 | Not Implemented（未实现） | 服务器不支持请求的方法，无法执行。|
-| 502 | Bad Gateway（错误网关） | 服务器作为网关或代理，从上游服务器收到无效响应。|
-| 503 | Service Unavailable（服务不可用） | 服务器当前无法处理请求，可能是由于过载或维护。|
-| 504 | Gateway Timeout（网关超时） | 服务器作为网关或代理，未能及时从上游服务器获得响应。|
-| 505 | HTTP Version Not Supported（HTTP 版本不支持） | 服务器不支持请求中使用的 HTTP 版本。|
+| 错误码 | 描述                                          | 说明                                                       |
+| ------ | --------------------------------------------- | ---------------------------------------------------------- |
+| 400    | Bad Request（错误请求）                       | 服务器无法理解请求的格式，客户端应当修改请求后再尝试。     |
+| 401    | Unauthorized（未授权）                        | 请求要求身份验证，客户端需要提供有效的凭据。               |
+| 403    | Forbidden（禁止）                             | 服务器理解请求，但拒绝执行，通常是由于权限问题。           |
+| 404    | Not Found（未找到）                           | 服务器无法找到请求的资源，可能是因为资源不存在或已被删除。 |
+| 405    | Method Not Allowed（方法不允许）              | 请求的方法与资源不兼容，例如对只读资源执行写操作。         |
+| 408    | Request Timeout（请求超时）                   | 服务器在等待请求时超时，客户端可以稍后重试。               |
+| 409    | Conflict（冲突）                              | 请求与资源的当前状态存在冲突，例如多用户同时编辑同一资源。 |
+| 410    | Gone（已删除）                                | 请求的资源已被永久删除，且没有新的地址。                   |
+| 500    | Internal Server Error（内部服务器错误）       | 服务器遇到未知错误，无法完成请求。                         |
+| 501    | Not Implemented（未实现）                     | 服务器不支持请求的方法，无法执行。                         |
+| 502    | Bad Gateway（错误网关）                       | 服务器作为网关或代理，从上游服务器收到无效响应。           |
+| 503    | Service Unavailable（服务不可用）             | 服务器当前无法处理请求，可能是由于过载或维护。             |
+| 504    | Gateway Timeout（网关超时）                   | 服务器作为网关或代理，未能及时从上游服务器获得响应。       |
+| 505    | HTTP Version Not Supported（HTTP 版本不支持） | 服务器不支持请求中使用的 HTTP 版本。                       |
 
 ## 五、HTTP API
-| 组件 | 说明 |
-| ----------- | ----------- |
-| [Sys](#sys)| 提供有关设备型号、固件版本等信息。|
-| [P1](#p1) | 从P1读表器读取电表用气信息。|
-| [Plug](#plug) | 读取智能计量插座获取当前功率信息，控制插座通断。|
+| 组件          | 说明                                             |
+| ------------- | ------------------------------------------------ |
+| [Sys](#sys)   | 提供有关设备型号、固件版本等信息。               |
+| [P1](#p1)     | 从P1读表器读取电表用气信息。                     |
+| [Plug](#plug) | 读取智能计量插座获取当前功率信息，控制插座通断。 |
 
 ### Sys
 
@@ -287,13 +287,13 @@ GET http://192.168.31.213:8080/rpc/Sys.GetConfig
 }
 ```
 
-**方法：Sys.GetConfig**
-
-- 返回值
-
-| 参数名 | 参数类型 | 说明 |
-| - | - | - |
-| device | object | 详情见[Config](#config)表格 |
+> **方法：Sys.GetConfig**
+>
+> - 返回值
+>
+> | 参数名 | 参数类型 | 说明                        |
+> | ------ | -------- | --------------------------- |
+> | device | object   | 详情见[Config](#config)表格 |
 
 #### 设置设备名称、时区
 
@@ -308,38 +308,38 @@ POST http://192.168.31.213:8080/rpc/Sys.SetConfig?config={"device":{"hostname":"
 {"result": true}
 ```
 
-**方法：Sys.SetConfig**
-
-- 参数
-
-| 参数名 | 参数类型 | 说明 |
-| - | - | - |
-| config | object | 详情见[Config](#config)表格，只可修改设备名称、时区。|
-
-- 返回值
-
-| 参数名 | 参数类型 | 说明 |
-| - | - | - |
-| result | bool | `true`：成功，`false`：失败。|
+> **方法：Sys.SetConfig**
+>
+> - 参数
+>
+> | 参数名 | 参数类型 | 说明                                                  |
+> | ------ | -------- | ----------------------------------------------------- |
+> | config | object   | 详情见[Config](#config)表格，只可修改设备名称、时区。 |
+>
+> - 返回值
+>
+> | 参数名 | 参数类型 | 说明                          |
+> | ------ | -------- | ----------------------------- |
+> | result | bool     | `true`：成功，`false`：失败。 |
 
 #### Config
-| 参数名 | 参数类型 | 说明 |
-| - | - | - |
-| device | object | 设备配置信息，见下表。|
+| 参数名 | 参数类型 | 说明                   |
+| ------ | -------- | ---------------------- |
+| device | object   | 设备配置信息，见下表。 |
 
 device参数说明
 
-| 参数名 | 参数类型 | 说明 | 读写属性 |
-| - | - | - | - |
-| hostname | string | 设备名称 | R/W |
-| timezone | int | 时区 | R/W |
-| type | string | 设备型号 | R |
-| sn | string | 设备编码 | R |
-| mac | string | 设备mac地址 | R |
-| fw | string | 设备固件版本号 | R |
-| time | string | 设备当前时间 | R |
-| time_stamp | int | 设备当前时间戳 | R |
-| run_time | int | 设备运行时间（单位秒） | R |
+| 参数名     | 参数类型 | 说明                   | 读写属性 |
+| ---------- | -------- | ---------------------- | -------- |
+| hostname   | string   | 设备名称               | R/W      |
+| timezone   | int      | 时区                   | R/W      |
+| type       | string   | 设备型号               | R        |
+| sn         | string   | 设备编码               | R        |
+| mac        | string   | 设备mac地址            | R        |
+| fw         | string   | 设备固件版本号         | R        |
+| time       | string   | 设备当前时间           | R        |
+| time_stamp | int      | 设备当前时间戳         | R        |
+| run_time   | int      | 设备运行时间（单位秒） | R        |
 
 
 ### P1
@@ -379,35 +379,34 @@ GET http://192.168.31.213:8080/rpc/P1.JsonData
 }
 ```
 
-**方法：P1.JsonData**
-
-- 返回值
-Json格式的电表数据。
-
-| 参数名                                           | 说明            |
-|-----------------------------------------------|---------------|
-| SN                                            | 当前电表设备SN      |
-| Device_Version                                | 当前电表版本        |
-| Device_Type                                   | 当前电表设备型号      |
-| Electricity delivered to client_low tariff    | 正向低费率累计电能kWh  |
-| Electricity delivered to client_normal tariff | 正向正常费率累计电能kWh |
-| Electricity delivered by client_low tariff    | 反向低费率累计电能kWh  |
-| Electricity delivered by client_normal tariff | 反向正常费率累计电能kWh |
-| AC_Phase-L1_Current                           | 交流 A 相电流A     |
-| AC_Phase-L2_Current                           | 交流 B 相电流A     |
-| AC_Phase-L3_Current                           | 交流 C 相电流A     |
-| AC_Phase-L1_Voltage                           | 交流 A 相电压V     |
-| AC_Phase-L2_Voltage                           | 交流 B 相电压V     |
-| AC_Phase-L3_Voltage                           | 交流 C 相电压V     |
-| Actual electricity power delivered +P         | 正向总有功功率kW     |
-| Actual electricity power received -P          | 反向总有功功率kW     |
-| Instantaneous active power L1 +P              | 购电有功功率 L1kW   |
-| Instantaneous active power L2 +P              | 购电有功功率 L2kW   |
-| Instantaneous active power L3 +P              | 购电有功功率 L3kW   |
-| Instantaneous active power L1 -P              | 并网有功功率 L1kW   |
-| Instantaneous active power L2 -P              | 并网有功功率 L2kW   |
-| Instantaneous active power L3 -P              | 并网有功功率 L3kW   |
-| Total Gas Consumption                         | 总燃气消耗量m³      |
+> **方法：P1.JsonData**
+>
+> - 返回值: Json格式的电表数据。
+>
+> | 参数名                                        | 说明                 | 单位 |
+> | --------------------------------------------- | -------------------- | ---- |
+> | SN                                            | 当前电表设备SN       | -    |
+> | Device_Version                                | 当前电表版本         | -    |
+> | Device_Type                                   | 当前电表设备型号     | -    |
+> | Electricity delivered to client_low tariff    | 正向低费率累计电能   | kWh  |
+> | Electricity delivered to client_normal tariff | 正向正常费率累计电能 | kWh  |
+> | Electricity delivered by client_low tariff    | 反向低费率累计电能   | kWh  |
+> | Electricity delivered by client_normal tariff | 反向正常费率累计电能 | kWh  |
+> | AC_Phase-L1_Current                           | 交流 A 相电流        | A    |
+> | AC_Phase-L2_Current                           | 交流 B 相电流        | A    |
+> | AC_Phase-L3_Current                           | 交流 C 相电流        | A    |
+> | AC_Phase-L1_Voltage                           | 交流 A 相电压        | V    |
+> | AC_Phase-L2_Voltage                           | 交流 B 相电压        | V    |
+> | AC_Phase-L3_Voltage                           | 交流 C 相电压        | V    |
+> | Actual electricity power delivered +P         | 正向总有功功率       | kW   |
+> | Actual electricity power received -P          | 反向总有功功率       | kW   |
+> | Instantaneous active power L1 +P              | 购电有功功率 L1      | kW   |
+> | Instantaneous active power L2 +P              | 购电有功功率 L2      | kW   |
+> | Instantaneous active power L3 +P              | 购电有功功率 L3      | kW   |
+> | Instantaneous active power L1 -P              | 并网有功功率 L1      | kW   |
+> | Instantaneous active power L2 -P              | 并网有功功率 L2      | kW   |
+> | Instantaneous active power L3 -P              | 并网有功功率 L3      | kW   |
+> | Total Gas Consumption                         | 总燃气消耗量         | m³   |
 
 
 #### 获取读表器源数据
@@ -459,8 +458,8 @@ GET http://192.168.31.213:8080/rpc/P1.GetData
     !1F28
 }
 ```
-**方法：P1.GetData**
-- 返回值：设备获取的电表源数据。
+> **方法：P1.GetData**
+> - 返回值：设备获取的电表源数据。
 
 ### Plug
 
@@ -483,16 +482,16 @@ GET http://192.168.31.213:8080/rpc/Plug.GetData
 }
 ```
 
-**方法：Plug.GetData**
-- 返回值
-
-| 参数名                    | 参数类型  | 说明      |
-|------------------------|-------|---------|
-| voltage                | int   | 电压      |
-| electric_current       | int   | 电流      |
-| positive_active_energy | float | 正向有功总电能 |
-| reverse_active_energy  | float | 反向有功总电能 |
-| power                  | float | 有功功率    |
+> **方法：Plug.GetData**
+> - 返回值
+>
+> | 参数名                 | 参数类型 | 说明           | 单位 |
+> | ---------------------- | -------- | -------------- | ---- |
+> | voltage                | int      | 电压           | V    |
+> | electric_current       | int      | 电流           | A    |
+> | positive_active_energy | float    | 正向有功总电能 | kWh  |
+> | reverse_active_energy  | float    | 反向有功总电能 | kWh  |
+> | power                  | float    | 有功功率       | W    |
 
 
 #### 获取插座通断状态
@@ -508,12 +507,12 @@ GET http://192.168.31.213:8080/rpc/Plug.GetStatus
 {"switch_status": "on"}
 ```
 
-**方法：Plug.GetStatus**
-- 返回值
-
-| 参数名           | 参数类型   | 说明                |
-|---------------|--------|-------------------|
-| switch_status | string | `on`：打开，`off`：断开。 |
+> **方法：Plug.GetStatus**
+> - 返回值
+>
+> | 参数名        | 参数类型 | 说明                      |
+> | ------------- | -------- | ------------------------- |
+> | switch_status | string   | `on`：打开，`off`：断开。 |
 
 
 #### 设置插座通断
@@ -529,29 +528,29 @@ POST http://192.168.31.213:8080/rpc/Plug.SetStatus?config={"switch_status":"on"}
 {"result": true}
 ```
 
-**方法：Plug.SetStatus**
-- 参数
-
-| 参数名           | 参数类型   | 说明                |
-|---------------|--------|-------------------|
-| config | object | 设置插座通断状态，详情见[Config](#config-1)表格。|
-
-- 返回值
-
-| 参数名           | 参数类型   | 说明                |
-|---------------|--------|-------------------|
-| result | bool | `true`：成功，`false`：失败。|
+> **方法：Plug.SetStatus**
+> - 参数
+>
+> | 参数名 | 参数类型 | 说明                                              |
+> | ------ | -------- | ------------------------------------------------- |
+> | config | object   | 设置插座通断状态，详情见[Config](#config-1)表格。 |
+>
+> - 返回值
+>
+> | 参数名 | 参数类型 | 说明                          |
+> | ------ | -------- | ----------------------------- |
+> | result | bool     | `true`：成功，`false`：失败。 |
 
 #### Config
 
-| 参数名                             | 参数类型   | 说明                       | 读写属性 |
-|---------------------------------|--------|--------------------------|------|
-| voltage                         | int    | 电压                       | R    |
-| current                         | int    | 电流                       | R    |
-| Electricity delivered to client | float  | 正向有功总电能                  | R    |
-| Electricity delivered by client | float  | 反向有功总电能                  | R    |
-| Active power                    | float  | 有功功率                     | R    |
-| switch_status                   | string | 插座通断控制：`on` - 打开，`off` - 断开 | R/W  |
+| 参数名                          | 参数类型 | 说明                                    | 单位 | 读写属性 |
+| ------------------------------- | -------- | --------------------------------------- | ---- | -------- |
+| voltage                         | int      | 电压                                    | V    | R        |
+| current                         | int      | 电流                                    | A    | R        |
+| Electricity delivered to client | float    | 正向有功总电能                          | kWh  | R        |
+| Electricity delivered by client | float    | 反向有功总电能                          | kWh  | R        |
+| Active power                    | float    | 有功功率                                | W    | R        |
+| switch_status                   | string   | 插座通断控制：`on` - 打开，`off` - 断开 | -    | R/W      |
 
 
 ### Meter
@@ -580,23 +579,23 @@ GET http://192.168.31.213:8080/rpc/Meter.JsonData
 }
 ```
 
-**方法：Meter.JsonData**
-- 返回值：Json格式的电表数据。
-
-    单相电表Json数据
-
-| 参数名                  | 说明      |
-|----------------------|---------|
-| SN                   | 设备SN    |
-| current              | 电流      |
-| voltage              | 电压      |
-| frequency            | 交流频率    |
-| power factor         | 功率因数    |
-| active Power         | 正反向有功功率 |
-| apparent power       | 正反向视在功率 |
-| reactive power       | 正反向无功功率 |
-| total_act_energy     | 总正向有功电能 |
-| total_act_ret_energy | 总反向有功电能 |
+> **方法：Meter.JsonData**
+> - 返回值：Json格式的电表数据。
+>
+> 单相电表Json数据
+>
+> | 参数名               | 说明           | 单位 |
+> | -------------------- | -------------- | ---- |
+> | SN                   | 设备SN         | -    |
+> | current              | 电流           | A    |
+> | voltage              | 电压           | V    |
+> | frequency            | 交流频率       | Hz   |
+> | power factor         | 功率因数       | -    |
+> | active Power         | 正反向有功功率 | W    |
+> | apparent power       | 正反向视在功率 | W    |
+> | reactive power       | 正反向无功功率 | W    |
+> | total_act_energy     | 总正向有功电能 | kWh  |
+> | total_act_ret_energy | 总反向有功电能 | kWh  |
 
 
 ## 六、设备

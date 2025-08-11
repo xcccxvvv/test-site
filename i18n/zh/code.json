@@ -321,5 +321,17 @@
   "theme.tags.tagsPageTitle": {
     "message": "标签",
     "description": "The title of the tag list page"
+  },
+  "home.description": {
+    "message": "欢迎来到我们的网站！"
+  },
+  "home.hero.greeting": {
+    "message": "欢迎来到"
+  },
+  "home.hero.title": {
+    "message": "开发者中心!"
+  },
+  "home.hero.subtitle": {
+    "message": "探索我们的资源，了解更多关于我们产品的信息"
   }
 }

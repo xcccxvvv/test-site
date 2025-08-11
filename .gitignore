@@ -4,6 +4,8 @@
 # Production
 /build
 
+.git
+
 # Generated files
 .docusaurus
 .cache-loader
