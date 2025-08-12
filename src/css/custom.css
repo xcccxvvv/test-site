@@ -135,6 +135,11 @@ html[data-theme="dark"] .theme-code-block {
     --prism-background-color: #1e1e1e !important;
 }
 
+.markdown ol {
+    list-style-type: decimal; /* shows 1, 2, 3 */
+    margin-left: 1.5em; /* adds indentation */
+}
+
 article .markdown a.link {
     text-decoration: none;
     font-weight: inherit;

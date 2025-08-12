@@ -22,10 +22,15 @@ const config: Config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
+  markdown: {
+    format: "mdx",
+    mermaid: true,
+  },
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "IGEN Tech Co,Ltd", // Usually your GitHub org/user name.
-  projectName: "Developers Site", // Usually your repo name.
+  projectName: "The Developer Center", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -91,7 +96,7 @@ const config: Config = {
           sidebarId: "tutorialSidebar",
           position: "left",
           label: "Documentation",
-        }, 
+        },
         {
           type: "localeDropdown",
           position: "right",

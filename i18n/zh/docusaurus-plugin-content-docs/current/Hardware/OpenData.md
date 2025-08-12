@@ -52,7 +52,9 @@ OpenData是为基于WiFi的Solarman物联网设备（如插座、电表、读表
 <summary>UDP广播获取IP</summary>
 
 1. 确保设备接入的WiFi网络与电脑处于同一局域网。
+
 2. 打开网络调试工具。
+
 3. 选择**UDP**协议。
     <img src={require("./img/select_udp.png").default} width="200"/>
 
@@ -72,9 +74,9 @@ OpenData是为基于WiFi的Solarman物联网设备（如插座、电表、读表
     <img src={require("./img/enter_at_command.png").default} width="400"/>
 
 9. 单击“**Send**”。
+
 10.  同一局域网内的Solarman设备会回复其IP地址和SN号。
     <img src={require("./img/return_ip_sn.png").default} width="400"/>
-
 
 </details>
 
@@ -97,12 +99,17 @@ UDP默认状态为关闭，需要手动开启UDP。
 
 
 **操作步骤**：
+
 1. 确保设备和您的电脑连接到同一个路由器或同一个Wi-Fi热点。
+
 2. 打开网络调试工具。
+
 3. 在网络设置区域选择协议类型**UDP**。
-<img src={require("./img/select_udp.png").default} width="200"/>
+    <img src={require("./img/select_udp.png").default} width="200"/>
+
 4. 在本地主机地址选项中，选择您电脑在当前局域网的**IP地址**。
-<img src={require("./img/select_ip2.png").default} width="200"/>
+    <img src={require("./img/select_ip2.png").default} width="200"/>
+
 5. 设置本地**端口**号为**8088**。
 <img src={require("./img/enter_port2.png").default} width="200"/>
 6. 点击“**Open**”开始监听。
