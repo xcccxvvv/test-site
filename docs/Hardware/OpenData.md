@@ -49,6 +49,7 @@ Choose one of the following four methods:
 <details>
 <summary>Obtain IP via UDP broadcast</summary>
 
+
 1. Ensure the device and computer are on the same LAN.
 
 2. Open the network debugging tool.

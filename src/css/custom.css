@@ -140,6 +140,12 @@ html[data-theme="dark"] .theme-code-block {
     margin-left: 1.5em; /* adds indentation */
 }
 
+/* For unordered lists (dots/discs) */
+.markdown ul {
+    list-style-type: disc;
+    margin-left: 1.5em;
+}
+
 article .markdown a.link {
     text-decoration: none;
     font-weight: inherit;
